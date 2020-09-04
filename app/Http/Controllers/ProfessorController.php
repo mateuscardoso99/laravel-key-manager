@@ -22,7 +22,7 @@ class ProfessorController extends Controller
         });
     }
     
-    /**
+    /*
      retorna a view index com os professores cadastrados
      */
     public function index()
@@ -31,7 +31,7 @@ class ProfessorController extends Controller
         return view('professor.index',['profs'=>$profs]);
     }
 
-    /**
+    /*
      retorna a view de create para criar um professor
      */
     public function create()
@@ -39,7 +39,7 @@ class ProfessorController extends Controller
         return view('professor.create');
     }
 
-    /**
+    /*
      insere um professor no banco
      */
     public function store(Request $request)
@@ -72,7 +72,7 @@ class ProfessorController extends Controller
      */
 
 
-    /**
+    /*
      ativa ou desativa o professor com base na situação atual
      */
 

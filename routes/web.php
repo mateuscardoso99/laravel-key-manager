@@ -92,6 +92,11 @@ Route::prefix('aula')->group(function(){
 });
 
 /* ROTAS DE RELATÓRIOS*/
-Route::get('/relatorios', function(){
-	return view('relatorios.index');
-})->name('relatorios');
+Route::prefix('relatorios')->group(function(){
+	Route::get('', function(){
+		return view('relatorios.index');
+	})->name('relatorios');
+
+	Route::get('/chaves/situacao','ChaveController@chavesSituacao')->name('chave.situacao');
+	Route::get('/chaves/devolucoes','ChaveController@chavesDevolvidas')->name('chave.devolucao');
+});

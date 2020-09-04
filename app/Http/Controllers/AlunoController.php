@@ -24,7 +24,7 @@ class AlunoController extends Controller
     }
 
 
-    /**
+    /*
      retorna a view index com os alunos cadastrados
      */
     public function index()
@@ -33,7 +33,7 @@ class AlunoController extends Controller
         return view('aluno.index',['alunos'=>$alunos]);
     }
 
-    /**
+    /*
      retorna a view de create para criar um aluno
      */
     public function create()
@@ -44,7 +44,7 @@ class AlunoController extends Controller
     }
 
 
-    /**
+    /*
      insere um aluno no banco
      */
     public function store(Request $request)
@@ -78,7 +78,7 @@ class AlunoController extends Controller
      */
 
 
-    /**
+    /*
      ativa ou desativa o aluno com base na situação atual
      */
 

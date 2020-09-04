@@ -19,5 +19,11 @@ class Aula extends Model
 
     public function chave(){
         return $this->belongsTo('App\Models\Chave','id_chave');
+	}
+	public function aluno(){
+        return $this->belongsTo('App\Models\Aluno','id_aluno');
+	}
+	public function professor(){
+        return $this->belongsTo('App\Models\Professor','id_professor');
     }
 }

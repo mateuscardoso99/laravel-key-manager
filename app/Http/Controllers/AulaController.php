@@ -24,7 +24,7 @@ class AulaController extends Controller
         });
     }
 
-    /**
+    /*
      retorna a view index com as aulas cadastrados
      */
     public function index()
@@ -45,7 +45,7 @@ class AulaController extends Controller
     }
 
     
-    /**
+    /*
      insere uma aula no banco
      */
     public function store($data, $chave_id)

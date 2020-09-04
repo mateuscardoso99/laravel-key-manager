@@ -21,7 +21,7 @@ class PorteiroController extends Controller
         });
     }
     
-    /**
+    /*
      retorna a view index com os porteiros cadastrados
      */
     public function index()
@@ -30,7 +30,7 @@ class PorteiroController extends Controller
         return view('porteiro.index',['porteiros'=>$porteiros]);
     }
 
-    /**
+    /*
      retorna a view de create para criar um porteiro
      */
     public function create()
@@ -39,7 +39,7 @@ class PorteiroController extends Controller
     }
 
 
-    /**
+    /*
      insere um porteiro no banco
      */
     public function store(Request $request)
@@ -71,7 +71,7 @@ class PorteiroController extends Controller
      */
 
 
-    /**
+    /*
      ativa ou desativa o porteiro com base na situação atual
      */
 

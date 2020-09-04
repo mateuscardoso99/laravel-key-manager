@@ -6,6 +6,7 @@ use App\Models\Chave;
 use App\Models\Porteiro;
 use App\Models\Professor;
 use App\Models\Aluno;
+use App\Models\Aula;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ class ChaveController extends Controller
         });
     }
 
-    /**
+    /*
      retorna a view index com as chaves cadastradas
      */
     public function index()
@@ -38,7 +39,7 @@ class ChaveController extends Controller
         return view('chave.index',['chaves'=>$chaves]);
     }
 
-    /**
+    /*
      retorna a view de create para criar uma chave
      */
     public function create()
@@ -48,7 +49,7 @@ class ChaveController extends Controller
         return view('chave.create',['porteiros'=>$porteiros]);
     }
 
-    /**
+    /*
      insere uma chave no banco
      */
     public function store(Request $request)
@@ -81,7 +82,7 @@ class ChaveController extends Controller
      */
 
 
-    /**
+    /*
      ativa ou desativa a chave com base na situação atual
      */
 
@@ -226,4 +227,52 @@ class ChaveController extends Controller
         }
         return redirect()->route('chave.index');
     }
+
+
+    //RELATÓRIOS:
+    public function chavesDevolvidas(){
+        $aulasdealunos = Aula::whereNull('id_professor')
+        ->where('status','encerrada')
+        ->where('user_id',$this->user_id)
+        ->with(['chave','aluno'])
+        ->get();
+
+        $aulasdeprofs = Aula::whereNull('id_aluno')
+        ->where('status','encerrada')
+        ->where('user_id',$this->user_id)
+        ->with(['chave','professor'])
+        ->get();
+
+        $all = Aula::whereNotNull('id_aluno')
+        ->whereNotNull('id_professor')
+        ->where('status','encerrada')
+        ->where('user_id',$this->user_id)
+        ->with(['chave','professor','aluno'])->get();
+
+        return view('relatorios.chavesdevolvidas',
+         [
+            'aulasdealunos' => $aulasdealunos,
+            'aulasdeprofs' => $aulasdeprofs,
+            'all' => $all
+        ]);
+    }
+
+    public function chavesSituacao(){
+        $chavesliberadas = Chave::where('user_id',$this->user_id)
+        ->where('situacao','liberada')
+        ->with('porteiro')
+        ->get();
+
+        $chavesocupadas = Aula::where('status','em andamento')
+        ->where('user_id',$this->user_id)
+        ->with(['chave','aluno','professor'])
+        ->get();
+
+        return view('relatorios.situacao',
+         [
+            'chavesliberadas' => $chavesliberadas,
+            'chavesocupadas' => $chavesocupadas
+        ]);
+    }
+
 }
