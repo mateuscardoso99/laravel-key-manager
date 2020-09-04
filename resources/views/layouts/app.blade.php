@@ -49,7 +49,7 @@
                             <a class="nav-link" href="{{route('aula.index')}}">Aulas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Relatórios</a>
+                            <a class="nav-link" href="{{route('relatorios')}}">Relatórios</a>
                         </li>
                     </ul>
 

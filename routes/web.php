@@ -90,3 +90,8 @@ Route::prefix('aula')->group(function(){
 
 	Route::delete('/delete/{id}', 'AulaController@delete')->name('aula.delete');
 });
+
+/* ROTAS DE RELATÓRIOS*/
+Route::get('/relatorios', function(){
+	return view('relatorios.index');
+})->name('relatorios');
