@@ -197,7 +197,7 @@ class ChaveController extends Controller
 
         if ($chave) {
             DB::transaction(function() use($data, $chave){
-                $aula = app()->call('App\Http\Controllers\AulaController@store',['chave_id'=>$chave->id,'data'=>$data,'user_id'=>$this->user_id]);
+                $aula = app()->call('App\Http\Controllers\AulaController@store',['chave_id'=>$chave->id,'data'=>$data]);
 
                 $chave->situacao = 'ocupada';
                 $chave->save();
@@ -217,7 +217,7 @@ class ChaveController extends Controller
 
         if ($chave) {
             DB::transaction(function() use($data, $chave){
-                $aula = app()->call('App\Http\Controllers\AulaController@update',['chave_id'=>$chave->id,'data'=>$data,'user_id'=>$this->user_id]);
+                $aula = app()->call('App\Http\Controllers\AulaController@update',['chave_id'=>$chave->id,'data'=>$data]);
 
                 $chave->situacao = 'liberada';
                 $chave->save();

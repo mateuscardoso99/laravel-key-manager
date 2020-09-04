@@ -48,7 +48,7 @@ class AulaController extends Controller
     /**
      insere uma aula no banco
      */
-    public function store($data, $chave_id, $user_id)
+    public function store($data, $chave_id)
     {
         Aula::create([
              'id_chave' => $chave_id,
@@ -56,7 +56,7 @@ class AulaController extends Controller
              'id_aluno' => $data['sel_alunos'],
              'id_professor' => $data['sel_professores'],
              'data_inicio' => $data['data'],
-             'user_id' => $user_id
+             'user_id' => Auth::id()
          ]);
         return redirect()->route('chave.index');
     }
@@ -87,7 +87,7 @@ class AulaController extends Controller
     /*
     atualiza uma aula no banco
     */
-    public function update($data, $chave_id, $user_id)
+    public function update($data, $chave_id)
     {
         $aula = Aula::where('id_chave',$chave_id)->
         where('status','em andamento')->first();
