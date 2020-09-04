@@ -12,6 +12,9 @@ class AulaController extends Controller
 {
     protected $user_id;
 
+
+    /* pegando o id do usuário logado */
+
     public function __construct(){
         $this->middleware('auth');
 
@@ -20,10 +23,9 @@ class AulaController extends Controller
             return $next($request);
         });
     }
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view index com as aulas cadastrados
      */
     public function index()
     {
@@ -42,11 +44,9 @@ class AulaController extends Controller
         //
     }
 
+    
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     insere uma aula no banco
      */
     public function store($data, $chave_id, $user_id)
     {
@@ -83,13 +83,10 @@ class AulaController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    /*
+    atualiza uma aula no banco
+    */
     public function update($data, $chave_id, $user_id)
     {
         $aula = Aula::where('id_chave',$chave_id)->
@@ -103,11 +100,9 @@ class AulaController extends Controller
         return redirect()->route('chave.index');
     }
 
+    
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove uma aula do banco de dados
      */
     public function delete($id)
     {

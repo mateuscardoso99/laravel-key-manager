@@ -11,6 +11,9 @@ class AlunoController extends Controller
 {
     protected $user_id;
 
+
+    /* pegando o id do usuário logado */
+
     public function __construct(){
         $this->middleware('auth');
 
@@ -19,10 +22,10 @@ class AlunoController extends Controller
             return $next($request);
         });
     }
+
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view index com os alunos cadastrados
      */
     public function index()
     {
@@ -31,9 +34,7 @@ class AlunoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view de create para criar um aluno
      */
     public function create()
     {
@@ -42,11 +43,9 @@ class AlunoController extends Controller
         return view('aluno.create',['profs'=>$profs]);
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     insere um aluno no banco
      */
     public function store(Request $request)
     {
@@ -80,11 +79,7 @@ class AlunoController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ativa ou desativa o aluno com base na situação atual
      */
 
     public function changeSituacao($id)
@@ -105,7 +100,9 @@ class AlunoController extends Controller
     }
 
 
-
+    /*
+    retorna a view para edição de um aluno
+    */
     public function edit($id)
     {
         $aluno = Aluno::find($id);
@@ -120,6 +117,9 @@ class AlunoController extends Controller
     }
 
 
+    /*
+    atualiza um aluno no banco
+    */
     public function update(Request $request, $id)
     {
         $aluno = Aluno::find($id);
@@ -135,10 +135,7 @@ class AlunoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove um aluno do banco de dados
      */
     public function delete($id)
     {

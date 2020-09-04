@@ -10,6 +10,9 @@ class ProfessorController extends Controller
 {
     protected $user_id;
 
+
+    /* pegando o id do usuário logado */
+
     public function __construct(){
         $this->middleware('auth');
 
@@ -18,10 +21,9 @@ class ProfessorController extends Controller
             return $next($request);
         });
     }
+    
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view index com os professores cadastrados
      */
     public function index()
     {
@@ -30,9 +32,7 @@ class ProfessorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view de create para criar um professor
      */
     public function create()
     {
@@ -40,10 +40,7 @@ class ProfessorController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     insere um professor no banco
      */
     public function store(Request $request)
     {
@@ -76,11 +73,7 @@ class ProfessorController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ativa ou desativa o professor com base na situação atual
      */
 
     public function changeSituacao($id)
@@ -101,7 +94,9 @@ class ProfessorController extends Controller
     }
 
 
-
+    /*
+    retorna a view para edição de um professor
+    */
     public function edit($id)
     {
         $prof = Professor::find($id);
@@ -112,6 +107,9 @@ class ProfessorController extends Controller
     }
 
 
+    /*
+    atualiza um professor no banco
+    */
     public function update(Request $request, $id)
     {
         $prof = Professor::find($id);
@@ -126,10 +124,7 @@ class ProfessorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove um professor do banco de dados
      */
     public function delete($id)
     {

@@ -17,6 +17,9 @@ class ChaveController extends Controller
 {
     protected $user_id;
 
+
+    /* pegando o id do usuário logado */
+
     public function __construct(){
         $this->middleware('auth');
 
@@ -25,10 +28,9 @@ class ChaveController extends Controller
             return $next($request);
         });
     }
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view index com as chaves cadastradas
      */
     public function index()
     {
@@ -37,9 +39,7 @@ class ChaveController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view de create para criar uma chave
      */
     public function create()
     {
@@ -49,10 +49,7 @@ class ChaveController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     insere uma chave no banco
      */
     public function store(Request $request)
     {
@@ -85,11 +82,7 @@ class ChaveController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ativa ou desativa a chave com base na situação atual
      */
 
     public function changeSituacao($id)
@@ -110,7 +103,9 @@ class ChaveController extends Controller
     }
 
 
-
+    /*
+    retorna a view para edição de uma chave
+    */
     public function edit($id)
     {
         $chave = Chave::find($id);
@@ -125,6 +120,9 @@ class ChaveController extends Controller
     }
 
 
+    /*
+    atualiza uma chave no banco
+    */
     public function update(Request $request, $id)
     {
         $chave = Chave::find($id);
@@ -139,10 +137,7 @@ class ChaveController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove uma chave do banco de dados
      */
     public function delete($id)
     {
@@ -154,6 +149,9 @@ class ChaveController extends Controller
     }
 
 
+    /*
+    redireciona para a view correta com base na situação da chave
+    */
     public function managerChave($id)
     {
         $chave = Chave::find($id);
@@ -189,6 +187,9 @@ class ChaveController extends Controller
     }
 
 
+    /*
+    insere uma nova aula no banco e atualiza a situação da chave
+    */
     public function iniciarAula(Request $request, $id)
     {
         $chave = Chave::find($id);
@@ -206,6 +207,9 @@ class ChaveController extends Controller
     }
 
 
+    /*
+    atualiza o status da aula no banco e atualiza a situação da chave
+    */
     public function encerrarAula(Request $request, $id)
     {
         $chave = Chave::find($id);

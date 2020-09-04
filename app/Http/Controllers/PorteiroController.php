@@ -10,6 +10,8 @@ class PorteiroController extends Controller
 {
     protected $user_id;
 
+    /* pegando o id do usuário logado */
+
     public function __construct(){
         $this->middleware('auth');
 
@@ -18,10 +20,9 @@ class PorteiroController extends Controller
             return $next($request);
         });
     }
+    
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view index com os porteiros cadastrados
      */
     public function index()
     {
@@ -30,20 +31,16 @@ class PorteiroController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     retorna a view de create para criar um porteiro
      */
     public function create()
     {
         return view('porteiro.create');
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     insere um porteiro no banco
      */
     public function store(Request $request)
     {
@@ -75,11 +72,7 @@ class PorteiroController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ativa ou desativa o porteiro com base na situação atual
      */
 
     public function changeSituacao($id)
@@ -100,7 +93,9 @@ class PorteiroController extends Controller
     }
 
 
-
+    /*
+    retorna a view para edição de um porteiro
+    */
     public function edit($id)
     {
         $porteiro = Porteiro::find($id);
@@ -111,6 +106,9 @@ class PorteiroController extends Controller
     }
 
 
+    /*
+    atualiza um porteiro no banco
+    */
     public function update(Request $request, $id)
     {
         $porteiro = Porteiro::find($id);
@@ -124,10 +122,7 @@ class PorteiroController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove um porteiro do banco de dados
      */
     public function delete($id)
     {
