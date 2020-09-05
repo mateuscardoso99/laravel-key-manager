@@ -27,7 +27,8 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        $profs = Professor::where('user_id',$this->user_id)->get();
+        $profs = Professor::where('user_id',$this->user_id)
+        ->paginate(10);
         return view('professor.index',['profs'=>$profs]);
     }
 

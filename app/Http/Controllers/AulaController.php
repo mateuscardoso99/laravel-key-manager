@@ -30,7 +30,7 @@ class AulaController extends Controller
     public function index()
     {
         $aulas = Aula::where('user_id',$this->user_id)
-        ->with('chave')->get();
+        ->with('chave')->paginate(10);
         return view('aula.index',['aulas'=>$aulas]);
     }
 

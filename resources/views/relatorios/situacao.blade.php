@@ -35,7 +35,15 @@
 	            	<tbody>
 					    <tr>
                           <td>{{$ch->chave->sala}}</td>
-					      <td>{{$ch->professor->nome}}</td>
+                          @if($ch->professor && $ch->aluno)
+					      	<td>{{$ch->professor->nome}}
+					      		e {{$ch->aluno->nome}}
+					      	</td>
+					      @elseif($ch->professor)
+					      	<td>{{$ch->professor->nome}}</td>
+					      @else
+					      	<td>{{$ch->aluno->nome}}</td>
+					      @endif
 					    </tr>
 					  </tbody>
 	            @endforeach

@@ -29,7 +29,7 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        $alunos = Aluno::where('user_id',$this->user_id)->with('professor')->get();
+        $alunos = Aluno::where('user_id',$this->user_id)->with('professor')->paginate(10);
         return view('aluno.index',['alunos'=>$alunos]);
     }
 

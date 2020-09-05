@@ -7,8 +7,17 @@
             <form action="{{route('professor.update',$prof->id)}}" method="post">
                 @method('put')
                 @csrf
-                <input class="form-control" type="text" name="nome" value="{{$prof->nome}}" required>
-                <input class="form-control" type="text" name="graduacao" value="{{$prof->graduacao}}" required>
+
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" class="form-control" value="{{$prof->nome}}" placeholder="Nome" id="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="graduacao">Graduação</label>
+                    <input type="text" name="graduacao" class="form-control" value="{{$prof->graduacao}}" placeholder="Graduação" id="graduacao" required>
+                </div>
+
                 <button class="btn btn-primary" type="submit">Salvar</button>
             </form>
         </div>

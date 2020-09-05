@@ -26,7 +26,8 @@ class PorteiroController extends Controller
      */
     public function index()
     {
-        $porteiros = Porteiro::where('user_id',$this->user_id)->get();
+        $porteiros = Porteiro::where('user_id',$this->user_id)
+        ->paginate(10);
         return view('porteiro.index',['porteiros'=>$porteiros]);
     }
 

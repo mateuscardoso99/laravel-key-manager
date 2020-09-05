@@ -25,25 +25,27 @@
 					      		@method('put')
 					      		@csrf
 					      		@if($al->situacao === 'ativado')
-					      			<button type="submit">Desativar</button>
+					      			<button class="btn btn-warning" type="submit">Desativar</button>
 					      		@else
-					      			<button type="submit">Ativar</button>
+					      			<button class="btn btn-warning" type="submit">Ativar</button>
 					      		@endif
 					      	</form>
 					      	<form action="{{route('aluno.delete',$al->id)}}"
 					      	method="post">
 					      		@method('delete')
 					      		@csrf
-					      		<button>Apagar</button>
+					      		<button type="submit" class="btn btn-danger">Apagar</button>
 					      	</form>
-			            	<a href="{{route('aluno.edit',$al->id)}}">Atualizar</a>
+			            	<a class="btn btn-success" href="{{route('aluno.edit',$al->id)}}">Atualizar</a>
 					      </td>
 					    </tr>
 					  </tbody>
 	            @endforeach
         	</table>
 
-             <a href="{{route('aluno.create')}}">
+        	{{ $alunos->links() }}
+
+             <a class="btn btn-primary" href="{{route('aluno.create')}}">
                 Cadastrar aluno
             </a>
         </div>

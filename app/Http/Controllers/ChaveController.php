@@ -35,7 +35,7 @@ class ChaveController extends Controller
      */
     public function index()
     {
-        $chaves = Chave::where('user_id',$this->user_id)->with('porteiro')->get();
+        $chaves = Chave::where('user_id',$this->user_id)->with('porteiro')->paginate(10);
         return view('chave.index',['chaves'=>$chaves]);
     }
 

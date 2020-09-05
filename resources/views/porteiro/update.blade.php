@@ -7,7 +7,11 @@
             <form action="{{route('porteiro.update',$porteiro->id)}}" method="post">
             	@method('put')
             	@csrf
-            	<input class="form-control" type="text" name="nome" value="{{$porteiro->nome}}" required>
+                 <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" class="form-control" placeholder="Nome" value="{{$porteiro->nome}}" id="nome" required>
+                 </div>
+
             	<button class="btn btn-primary" type="submit">Salvar</button>
             </form>
         </div>

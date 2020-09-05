@@ -18,12 +18,12 @@
 					      <td>{{$aula->status}}</td>
 					      <td>{{$aula->chave->sala}}</td>
 					      <td>
-					      	<button>Detalhes</button>
+					      	<button class="btn btn-primary">Detalhes</button>
 					      	<form action="{{route('aula.delete',$aula->id)}}"
 					      	method="post">
 					      		@method('delete')
 					      		@csrf
-					      		<button>Apagar</button>
+					      		<button class="btn btn-danger">Apagar</button>
 					      	</form>
 					      </td>
 					    </tr>
@@ -31,9 +31,8 @@
 	            @endforeach
         	</table>
 
-             <a href="">
-                ola mundo
-            </a>
+        	{{ $aulas->links() }}
+
         </div>
     </div>
 </div>

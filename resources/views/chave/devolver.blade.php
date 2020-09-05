@@ -6,9 +6,16 @@
         <div class="col-md-8">
             <form action="{{route('chave.encerrar',$chave->id)}}" method="post">
             	@csrf
-            	<input class="form-control" type="text" name="sala" value="{{$chave->sala}}" readonly>
 
-                <input class="form-control" type="text" name="data" required>
+                <div class="form-group">
+                    <label for="sala">Sala</label>
+                    <input type="text" name="sala" class="form-control" value="{{$chave->sala}}" placeholder="Sala" id="sala" readonly required>
+                </div>
+
+                <div class="form-group">
+                    <label for="data">Data</label>
+                    <input type="text" name="data" class="form-control" placeholder="d/m/y" id="data" required>
+                </div>
 
             	<button class="btn btn-primary" type="submit">Encerrar aula</button>
             </form>

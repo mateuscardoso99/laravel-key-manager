@@ -6,7 +6,11 @@
         <div class="col-md-8">
             <form action="{{route('porteiro.store')}}" method="post">
             	@csrf
-            	<input class="form-control" type="text" name="nome" required>
+            	 <div class="form-group">
+				    <label for="nome">Nome</label>
+				    <input type="text" name="nome" class="form-control" placeholder="Nome" id="nome" required>
+				 </div>
+            	
             	<button class="btn btn-primary" type="submit">Salvar</button>
             </form>
         </div>

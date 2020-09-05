@@ -19,24 +19,26 @@
 					      <td>{{$ch->porteiro->nome}}</td>
 					      <td>
 					      		@if($ch->situacao === 'liberada')
-					      			<a href="{{route('chave.manager',$ch->id)}}">Liberar</a>
+					      			<a class="btn btn-success" href="{{route('chave.manager',$ch->id)}}">Liberar</a>
 					      		@else
-					      			<a href="{{route('chave.manager',$ch->id)}}">Devolver</a>
+					      			<a class="btn btn-warning" href="{{route('chave.manager',$ch->id)}}">Devolver</a>
 					      		@endif
 					      	<form action="{{route('chave.delete',$ch->id)}}"
 					      	method="post">
 					      		@method('delete')
 					      		@csrf
-					      		<button>Apagar</button>
+					      		<button class="btn btn-danger">Apagar</button>
 					      	</form>
-			            	<a href="{{route('chave.edit',$ch->id)}}">Atualizar</a>
+			            	<a class="btn btn-success" href="{{route('chave.edit',$ch->id)}}">Atualizar</a>
 					      </td>
 					    </tr>
 					  </tbody>
 	            @endforeach
         	</table>
 
-             <a href="{{route('chave.create')}}">
+        	{{ $chaves->links() }}
+
+             <a class="btn btn-primary" href="{{route('chave.create')}}">
                 Cadastrar chave
             </a>
         </div>

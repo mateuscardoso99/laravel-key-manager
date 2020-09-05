@@ -21,25 +21,27 @@
 					      		@method('put')
 					      		@csrf
 					      		@if($pt->situacao === 'ativado')
-					      			<button type="submit">Desativar</button>
+					      			<button class="btn btn-warning" type="submit">Desativar</button>
 					      		@else
-					      			<button type="submit">Ativar</button>
+					      			<button class="btn btn-warning" type="submit">Ativar</button>
 					      		@endif
 					      	</form>
 					      	<form action="{{route('porteiro.delete',$pt->id)}}"
 					      	method="post">
 					      		@method('delete')
 					      		@csrf
-					      		<button>Apagar</button>
+					      		<button type="submit" class="btn btn-danger">Apagar</button>
 					      	</form>
-			            	<a href="{{route('porteiro.edit',$pt->id)}}">Atualizar</a>
+			            	<a class="btn btn-success" href="{{route('porteiro.edit',$pt->id)}}">Atualizar</a>
 					      </td>
 					    </tr>
 					  </tbody>
 	            @endforeach
         	</table>
 
-             <a href="{{route('porteiro.create')}}">
+        	{{ $porteiros->links() }}
+
+             <a class="btn btn-primary" href="{{route('porteiro.create')}}">
                 Cadastrar porteiro
             </a>
         </div>
