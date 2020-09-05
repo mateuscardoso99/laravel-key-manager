@@ -31,14 +31,6 @@ class PorteiroController extends Controller
         return view('porteiro.index',['porteiros'=>$porteiros]);
     }
 
-    /*
-     retorna a view de create para criar um porteiro
-     */
-    public function create()
-    {
-        return view('porteiro.create');
-    }
-
 
     /*
      insere um porteiro no banco
@@ -89,19 +81,6 @@ class PorteiroController extends Controller
                 $porteiro->save();
             }
             
-        }
-        return redirect()->route('porteiro.index');
-    }
-
-
-    /*
-    retorna a view para edição de um porteiro
-    */
-    public function edit($id)
-    {
-        $porteiro = Porteiro::find($id);
-        if($porteiro){
-            return view('porteiro.update',['porteiro'=>$porteiro]);
         }
         return redirect()->route('porteiro.index');
     }

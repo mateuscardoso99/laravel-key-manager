@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">Gerencie chaves de salas de aula</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    Cadastre, edite, exclua, manipule professores, 
+                    alunos, porteiros, chaves e aulas, gerencie suas aulas veja quem pegou determinada chave, quem é o responsável por ela, quando devolveu e muito mais e veja relatórios do uso das chaves.
                 </div>
             </div>
         </div>

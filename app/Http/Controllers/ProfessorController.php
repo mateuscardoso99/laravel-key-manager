@@ -32,13 +32,6 @@ class ProfessorController extends Controller
         return view('professor.index',['profs'=>$profs]);
     }
 
-    /*
-     retorna a view de create para criar um professor
-     */
-    public function create()
-    {
-        return view('professor.create');
-    }
 
     /*
      insere um professor no banco
@@ -90,19 +83,6 @@ class ProfessorController extends Controller
                 $prof->save();
             }
           
-        }
-        return redirect()->route('professor.index');
-    }
-
-
-    /*
-    retorna a view para edição de um professor
-    */
-    public function edit($id)
-    {
-        $prof = Professor::find($id);
-        if($prof){
-            return view('professor.update',['prof'=>$prof]);
         }
         return redirect()->route('professor.index');
     }

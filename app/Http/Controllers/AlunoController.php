@@ -30,17 +30,9 @@ class AlunoController extends Controller
     public function index()
     {
         $alunos = Aluno::where('user_id',$this->user_id)->with('professor')->paginate(10);
-        return view('aluno.index',['alunos'=>$alunos]);
-    }
-
-    /*
-     retorna a view de create para criar um aluno
-     */
-    public function create()
-    {
         $profs = Professor::where('user_id',$this->user_id)
         ->where('situacao','ativado')->get();
-        return view('aluno.create',['profs'=>$profs]);
+        return view('aluno.index',['alunos'=>$alunos,'profs'=>$profs]);
     }
 
 
@@ -95,23 +87,6 @@ class AlunoController extends Controller
                 $aluno->save();
             }
           
-        }
-        return redirect()->route('aluno.index');
-    }
-
-
-    /*
-    retorna a view para edição de um aluno
-    */
-    public function edit($id)
-    {
-        $aluno = Aluno::find($id);
-        $profs = Professor::where('user_id',$this->user_id)
-        ->where('situacao','ativado')->get();
-        if($aluno){
-            return view('aluno.update',
-                ['aluno'=>$aluno,'profs'=>$profs]
-            );
         }
         return redirect()->route('aluno.index');
     }

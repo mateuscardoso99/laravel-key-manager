@@ -36,18 +36,11 @@ class ChaveController extends Controller
     public function index()
     {
         $chaves = Chave::where('user_id',$this->user_id)->with('porteiro')->paginate(10);
-        return view('chave.index',['chaves'=>$chaves]);
+         $porteiros = Porteiro::where('user_id',$this->user_id)
+        ->where('situacao','ativado')->get();
+        return view('chave.index',['chaves'=>$chaves,'porteiros'=>$porteiros]);
     }
 
-    /*
-     retorna a view de create para criar uma chave
-     */
-    public function create()
-    {
-        $porteiros = Porteiro::where('user_id',$this->user_id)
-        ->where('situacao','ativado')->get();
-        return view('chave.create',['porteiros'=>$porteiros]);
-    }
 
     /*
      insere uma chave no banco
@@ -99,23 +92,6 @@ class ChaveController extends Controller
                 $chave->save();
             }
           
-        }
-        return redirect()->route('chave.index');
-    }
-
-
-    /*
-    retorna a view para edição de uma chave
-    */
-    public function edit($id)
-    {
-        $chave = Chave::find($id);
-        $porteiros = Porteiro::where('user_id',$this->user_id)
-        ->where('situacao','ativado')->get();
-        if($chave){
-            return view('chave.update',
-                ['chave'=>$chave,'porteiros'=>$porteiros]
-            );
         }
         return redirect()->route('chave.index');
     }

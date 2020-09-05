@@ -30,20 +30,9 @@ class AulaController extends Controller
     public function index()
     {
         $aulas = Aula::where('user_id',$this->user_id)
-        ->with('chave')->paginate(10);
+        ->with(['chave','aluno','professor'])->paginate(10);
         return view('aula.index',['aulas'=>$aulas]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     
     /*
      insere uma aula no banco
@@ -68,17 +57,6 @@ class AulaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
