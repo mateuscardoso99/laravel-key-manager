@@ -19,6 +19,13 @@
 
             	<button class="btn btn-primary" type="submit">Encerrar aula</button>
             </form>
+
+            @foreach($errors->all() as $message)
+                <div class="alert alert-danger text-center mt-3" role="alert">
+                    <strong>{{$message}}</strong>
+                </div>
+             @endforeach
+             
         </div>
     </div>
 </div>

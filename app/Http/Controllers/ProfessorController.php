@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Professor;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProfessorRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ProfessorController extends Controller
@@ -36,9 +36,9 @@ class ProfessorController extends Controller
     /*
      insere um professor no banco
      */
-    public function store(Request $request)
+    public function store(ProfessorRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         Professor::create([
             'nome' => $data['nome'],
             'graduacao' => $data['graduacao'],
@@ -91,10 +91,10 @@ class ProfessorController extends Controller
     /*
     atualiza um professor no banco
     */
-    public function update(Request $request, $id)
+    public function update(ProfessorRequest $request, $id)
     {
         $prof = Professor::find($id);
-        $data = $request->all();
+        $data = $request->validated();
         if ($prof) {
             $prof->nome = $data['nome'];
             $prof->graduacao = $data['graduacao'];

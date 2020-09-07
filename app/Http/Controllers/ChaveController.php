@@ -8,7 +8,10 @@ use App\Models\Professor;
 use App\Models\Aluno;
 use App\Models\Aula;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ChaveRequest;
+use App\Http\Requests\IniciarAulaRequest;
+use App\Http\Requests\FecharAulaRequest;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -45,9 +48,9 @@ class ChaveController extends Controller
     /*
      insere uma chave no banco
      */
-    public function store(Request $request)
+    public function store(ChaveRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         Chave::create([
             'sala' => $data['sala'],
             'id_porteiro' => $data['sel_porteiros'],
@@ -100,10 +103,10 @@ class ChaveController extends Controller
     /*
     atualiza uma chave no banco
     */
-    public function update(Request $request, $id)
+    public function update(ChaveRequest $request, $id)
     {
         $chave = Chave::find($id);
-        $data = $request->all();
+        $data = $request->validated();
         if ($chave) {
             $chave->sala = $data['sala'];
             $chave->id_porteiro = $data['sel_porteiros'];
@@ -167,10 +170,10 @@ class ChaveController extends Controller
     /*
     insere uma nova aula no banco e atualiza a situação da chave
     */
-    public function iniciarAula(Request $request, $id)
+    public function iniciarAula(IniciarAulaRequest $request, $id)
     {
         $chave = Chave::find($id);
-        $data = $request->all();
+        $data = $request->validated();
 
         if ($chave) {
             DB::transaction(function() use($data, $chave){
@@ -187,10 +190,10 @@ class ChaveController extends Controller
     /*
     atualiza o status da aula no banco e atualiza a situação da chave
     */
-    public function encerrarAula(Request $request, $id)
+    public function encerrarAula(FecharAulaRequest $request, $id)
     {
         $chave = Chave::find($id);
-        $data = $request->all();
+        $data = $request->validated();
 
         if ($chave) {
             DB::transaction(function() use($data, $chave){

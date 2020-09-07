@@ -110,8 +110,14 @@
         	{{ $chaves->links() }}
 
              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
-			  Cadastrar chave
-			</button> 
+			         Cadastrar chave
+			       </button> 
+
+             @foreach($errors->all() as $message)
+                <div class="alert alert-danger text-center mt-3" role="alert">
+                    <strong>{{$message}}</strong>
+                </div>
+             @endforeach
 
         </div>
     </div>

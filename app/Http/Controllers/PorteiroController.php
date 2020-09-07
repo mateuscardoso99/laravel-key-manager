@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Porteiro;
-use Illuminate\Http\Request;
+use App\Http\Requests\PorteiroRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PorteiroController extends Controller
@@ -35,9 +35,9 @@ class PorteiroController extends Controller
     /*
      insere um porteiro no banco
      */
-    public function store(Request $request)
+    public function store(PorteiroRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         Porteiro::create([
             'nome' => $data['nome'],
             'user_id' => $this->user_id,
@@ -89,10 +89,10 @@ class PorteiroController extends Controller
     /*
     atualiza um porteiro no banco
     */
-    public function update(Request $request, $id)
+    public function update(PorteiroRequest $request, $id)
     {
         $porteiro = Porteiro::find($id);
-        $data = $request->all();
+        $data = $request->validated();
         if ($porteiro) {
             $porteiro->nome = $data['nome'];
             $porteiro->save();

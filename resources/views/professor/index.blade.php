@@ -108,6 +108,13 @@
 			  Cadastrar professor
 			</button> 
 
+
+			@foreach($errors->all() as $message)
+                <div class="alert alert-danger text-center mt-3" role="alert">
+                    <strong>{{$message}}</strong>
+                </div>
+             @endforeach
+
         </div>
     </div>
 </div>

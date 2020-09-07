@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aluno;
 use App\Models\Professor;
-use Illuminate\Http\Request;
+use App\Http\Requests\AlunoRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AlunoController extends Controller
@@ -39,9 +39,9 @@ class AlunoController extends Controller
     /*
      insere um aluno no banco
      */
-    public function store(Request $request)
+    public function store(AlunoRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         Aluno::create([
             'nome' => $data['nome'],
             'curso' => $data['curso'],
@@ -95,10 +95,10 @@ class AlunoController extends Controller
     /*
     atualiza um aluno no banco
     */
-    public function update(Request $request, $id)
+    public function update(AlunoRequest $request, $id)
     {
         $aluno = Aluno::find($id);
-        $data = $request->all();
+        $data = $request->validated();
         if ($aluno) {
             $aluno->nome = $data['nome'];
             $aluno->curso = $data['curso'];
